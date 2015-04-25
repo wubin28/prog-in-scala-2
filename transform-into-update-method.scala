@@ -48,7 +48,8 @@ for (i <- 0.to(2))
 // receiver of the method call. You cannot write “println 10”,
 // but you can write “Console println 10”.
 Console println 10
-// println 10
+//println 10
+println (10)
 
 
 
