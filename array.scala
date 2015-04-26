@@ -8,7 +8,7 @@ for (i <- 0 to 2) // if a method takes only one parameter, you can call
 // This to method actually returns not an array but a different
 // kind of sequence, containing the values 0, 1, and 2,
 // which the for expression iterates over.
-print(greetStrings(i))
+  print(greetStrings(i))
 
 
 // These three lines of code illustrate an important concept to
@@ -20,8 +20,11 @@ print(greetStrings(i))
 // instance with which it was initialized. But you can change the
 // elements of that Array[String] over time, so the array itself is mutable.
 //val greetStrings = new Array[String](3)
-greetStrings.update(0, "Hi") // transform that into an invocation of
-                             // an update method
+greetStrings.update(0, "Hi")
+// When an assignment is made to a variable to which parentheses and
+// one or more arguments have been applied, the compiler will transform
+// that into an invocation of an update method that takes the arguments in
+// parentheses as well as the object to the right of the equals sign.
 greetStrings.update(1, ", ")
 greetStrings.update(2, "Scala!\n")
 for (i <- 0.to(2))
