@@ -32,7 +32,6 @@ class FunctionalClassRational extends FunSuite{
     assert(oneHalf lessThan twoThirds)
   }
 
-
   test("the rational max should work") {
     val twoThirds = new Rational(2, 3)
     val oneHalf = new Rational(1, 2)
@@ -40,11 +39,17 @@ class FunctionalClassRational extends FunSuite{
     assert(twoThirds === (oneHalf max twoThirds))
   }
 
-
   test("the auxiliary constructor should work") {
     val three = new Rational(3)
 
     assert("3/1" === three.toString)
+  }
+
+
+  test("the primary constructor should normalize the rational") {
+    val rat = new Rational(66, 42)
+
+    assert("11/7" === rat.toString)
   }
 }
 
