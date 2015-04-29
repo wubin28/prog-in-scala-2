@@ -10,7 +10,7 @@ class FunctionalClassRational extends FunSuite{
     assert("1/3" === oneThird.toString)
   }
 
-  test("check preconditions") {
+  test("the denominator should not be zero") {
     intercept[IllegalArgumentException] {
       var oneZero = new Rational(1, 0)
     }
