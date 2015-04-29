@@ -25,12 +25,15 @@ class FunctionalClassRational extends FunSuite{
     assert("7/6" === sum.toString)
   }
 
-
   test("the rational less than should work") {
     val oneHalf = new Rational(1, 2)
     val twoThirds = new Rational(2, 3)
 
     assert(oneHalf lessThan twoThirds)
+  }
+
+  test("the rational max should work") {
+    assert(twoThirds === oneHalf max twoThirds)
   }
 }
 
