@@ -45,11 +45,18 @@ class FunctionalClassRational extends FunSuite{
     assert("3/1" === three.toString)
   }
 
-
   test("the primary constructor should normalize the rational") {
     val rat = new Rational(66, 42)
 
     assert("11/7" === rat.toString)
+  }
+
+
+  test("the rational multiplication should work") {
+    val x = new Rational(1, 2)
+    val y = new Rational(2, 3)
+
+    assert("5/6" === x + x * y)
   }
 }
 
