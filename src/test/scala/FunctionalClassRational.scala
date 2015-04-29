@@ -29,16 +29,17 @@ class FunctionalClassRational extends FunSuite{
   test("the rational less than should work") {
     val oneHalf = new Rational(1, 2)
     val twoThirds = new Rational(2, 3)
+
     assert(oneHalf lessThan twoThirds)
   }
 }
 
 class Rational(n: Int, d: Int) {
-
   require(d != 0)
   val numer = n
   val denom = d
   override def toString = n + "/" + d
   def add(that: Rational) = new Rational(this.numer * that.denom + this.denom * that.numer
     , this.denom * that.denom)
+  def lessThan(that: Rational) = this.numer * that.denom < that.numer * this.denom
 }
