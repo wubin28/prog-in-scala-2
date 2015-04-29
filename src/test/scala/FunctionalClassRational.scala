@@ -44,7 +44,7 @@ class FunctionalClassRational extends FunSuite{
   test("the auxiliary constructor should work") {
     val three = new Rational(3)
 
-    assert("3/1" === three)
+    assert("3/1" === three.toString)
   }
 }
 
@@ -52,6 +52,7 @@ class Rational(n: Int, d: Int) {
   require(d != 0)
   val numer = n
   val denom = d
+  def this(n: Int) = this(n, 1)
   override def toString = n + "/" + d
   def add(that: Rational) = new Rational(this.numer * that.denom + this.denom * that.numer
     , this.denom * that.denom)
