@@ -55,8 +55,9 @@ class FunctionalClassRational extends FunSuite{
 
 class Rational(n: Int, d: Int) {
   require(d != 0)
-  val numer = n
-  val denom = d
+  private val g = gcd(n.abs, d.abs)
+  val numer = n / g
+  val denom = d / g
   def this(n: Int) = this(n, 1)
   override def toString = n + "/" + d
   def add(that: Rational) = new Rational(this.numer * that.denom + this.denom * that.numer
