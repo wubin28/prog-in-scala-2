@@ -32,8 +32,12 @@ class FunctionalClassRational extends FunSuite{
     assert(oneHalf lessThan twoThirds)
   }
 
+
   test("the rational max should work") {
-    assert(twoThirds === oneHalf max twoThirds)
+    val twoThirds = new Rational(2, 3)
+    val oneHalf = new Rational(1, 2)
+
+    assert(twoThirds === (oneHalf max twoThirds))
   }
 }
 
@@ -45,4 +49,5 @@ class Rational(n: Int, d: Int) {
   def add(that: Rational) = new Rational(this.numer * that.denom + this.denom * that.numer
     , this.denom * that.denom)
   def lessThan(that: Rational) = this.numer * that.denom < that.numer * this.denom
+  def max(that: Rational) = if (this lessThan that) that else this
 }
