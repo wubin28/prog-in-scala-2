@@ -22,12 +22,15 @@ class FunctionalClassRational extends FunSuite{
 
     val sum = oneHalf add twoThirds
 
-    assert("7/6" === sum)
+    assert("7/6" === sum.toString)
   }
 }
 
 class Rational(n: Int, d: Int) {
   require(d != 0)
+  val numer = n
+  val denom = d
   override def toString = n + "/" + d
-  def add(that: Rational) = new Rational(n * that.d + d * that.n, d * that.d)
+  def add(that: Rational) = new Rational(this.numer * that.denom + this.denom * that.numer
+    , this.denom * that.denom)
 }
