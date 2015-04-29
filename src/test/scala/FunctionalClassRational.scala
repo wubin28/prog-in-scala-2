@@ -39,6 +39,13 @@ class FunctionalClassRational extends FunSuite{
 
     assert(twoThirds === (oneHalf max twoThirds))
   }
+
+
+  test("the auxiliary constructor should work") {
+    val three = new Rational(3)
+
+    assert("3/1" === three)
+  }
 }
 
 class Rational(n: Int, d: Int) {
