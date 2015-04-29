@@ -9,8 +9,15 @@ class FunctionalClassRational extends FunSuite{
 
     assert("1/3" === oneThird.toString)
   }
+
+  test("check preconditions") {
+    intercept[IllegalArgumentException] {
+      var oneZero = new Rational(1, 0)
+    }
+  }
 }
 
 class Rational(n: Int, d: Int) {
+  require(d != 0)
   override def toString = n + "/" + d
 }
