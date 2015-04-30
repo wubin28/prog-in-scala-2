@@ -62,7 +62,7 @@ class FunctionalClassRational extends FunSuite{
     val x = new Rational(1, 2)
     val y = new Rational(2, 3)
 
-    assert("5/6" === (x + x * y))
+    assert("5/6" === (x + x * y).toString)
 //    Error:(65, 29) type mismatch;
 //    found   : Rational
 //    required: String
