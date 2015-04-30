@@ -56,7 +56,7 @@ class FunctionalClassRational extends FunSuite{
     val x = new Rational(1, 2)
     val y = new Rational(2, 3)
 
-    assert("5/6" === x + x * y)
+    assert("1/3" === (x * y).toString)
   }
 }
 
@@ -67,8 +67,9 @@ class Rational(n: Int, d: Int) {
   val denom = d / g
   def this(n: Int) = this(n, 1)
   override def toString = numer + "/" + denom
-  def ＋(that: Rational) = new Rational(this.numer * that.denom + this.denom * that.numer
+  def ＋(that: Rational): Rational = new Rational(this.numer * that.denom + this.denom * that.numer
     , this.denom * that.denom)
+  def *(that: Rational): Rational = new Rational(this.numer * that.numer, this.denom * that.denom)
   def lessThan(that: Rational) = this.numer * that.denom < that.numer * this.denom
   def max(that: Rational) = if (this lessThan that) that else this
   private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
