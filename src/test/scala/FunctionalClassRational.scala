@@ -20,7 +20,7 @@ class FunctionalClassRational extends FunSuite{
     val oneHalf = new Rational(1, 2)
     val twoThirds = new Rational(2, 3)
 
-    val sum = oneHalf ＋ twoThirds
+    val sum = oneHalf + twoThirds
 
     assert("7/6" === sum.toString)
   }
@@ -63,13 +63,6 @@ class FunctionalClassRational extends FunSuite{
     val y = new Rational(2, 3)
 
     assert("5/6" === (x + x * y).toString)
-//    Error:(65, 29) type mismatch;
-//    found   : Rational
-//    required: String
-//    assert("5/6" === (x + x * y))
-//                            ^
-
-
   }
 }
 
@@ -80,7 +73,7 @@ class Rational(n: Int, d: Int) {
   val denom = d / g
   def this(n: Int) = this(n, 1)
   override def toString = numer + "/" + denom
-  def ＋(that: Rational): Rational = new Rational(this.numer * that.denom + this.denom * that.numer
+  def +(that: Rational): Rational = new Rational(this.numer * that.denom + this.denom * that.numer
     , this.denom * that.denom)
   def *(that: Rational): Rational = new Rational(this.numer * that.numer, this.denom * that.denom)
   def lessThan(that: Rational) = this.numer * that.denom < that.numer * this.denom
