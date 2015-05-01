@@ -64,6 +64,10 @@ class FunctionalClassRational extends FunSuite{
     assert("2/3" === ((x + x) * y).toString)
     assert("5/6" === (x + (x * y)).toString)
   }
+
+  test("multiplying a rational number by an integer should work") {
+    assert("4/3" === (x * 2).toString)
+  }
 }
 
 class Rational(n: Int, d: Int) {
@@ -73,8 +77,8 @@ class Rational(n: Int, d: Int) {
   val denom = d / g
   def this(n: Int) = this(n, 1)
   override def toString = numer + "/" + denom
-  def +(that: Rational): Rational = new Rational(this.numer * that.denom + this.denom * that.numer
-    , this.denom * that.denom)
+  def +(that: Rational): Rational = new Rational(
+    this.numer * that.denom + this.denom * that.numer, this.denom * that.denom)
   def *(that: Rational): Rational = new Rational(this.numer * that.numer, this.denom * that.denom)
   def <(that: Rational) = this.numer * that.denom < that.numer * this.denom
   def max(that: Rational) = if (this < that) that else this
