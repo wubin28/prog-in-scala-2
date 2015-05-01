@@ -94,7 +94,7 @@ class FunctionalClassRational extends FunSuite{
 
   test("dividing a rational number by an integer should work") {
     val x = new Rational(2, 3)
-    assert("1/4" === (x / 2).toString)
+    assert("1/3" === (x / 2).toString)
   }
 }
 
@@ -118,6 +118,7 @@ class Rational(n: Int, d: Int) {
   def *(that: Rational): Rational = new Rational(this.numer * that.numer, this.denom * that.denom)
   def *(that: Int): Rational = new Rational(this.numer * that, this.denom)
   def /(that: Rational) = new Rational(this.numer * that.denom, this.denom * that.numer)
+  def /(that: Int) = new Rational(this.numer, this.denom * that)
   def <(that: Rational) = this.numer * that.denom < that.numer * this.denom
   def max(that: Rational) = if (this < that) that else this
   private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
