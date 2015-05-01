@@ -91,6 +91,11 @@ class FunctionalClassRational extends FunSuite{
     val y = new Rational(1, 2)
     assert("4/3" === (x / y).toString)
   }
+
+  test("dividing a rational number by an integer should work") {
+    val x = new Rational(2, 3)
+    assert("1/4" === (x / 2).toString)
+  }
 }
 
 class Rational(n: Int, d: Int) {
