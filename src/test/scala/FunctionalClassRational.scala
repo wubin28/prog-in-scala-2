@@ -96,6 +96,14 @@ class FunctionalClassRational extends FunSuite{
     val x = new Rational(2, 3)
     assert("1/3" === (x / 2).toString)
   }
+
+  test("swapping the operands should work") {
+    val x = new Rational(2, 3)
+    assert("8/3" === (x + 2).toString)
+    assert("4/3" === (2 * x).toString)
+    assert("4/3" === (2 - x).toString)
+    assert("3/1" === (2 / x).toString)
+  }
 }
 
 class Rational(n: Int, d: Int) {
