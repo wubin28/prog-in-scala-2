@@ -75,17 +75,21 @@ class FunctionalClassRational extends FunSuite{
     assert("8/3" === (x + 2).toString)
   }
 
-
   test("the rational subtraction should work") {
     val x = new Rational(2, 3)
     val y = new Rational(1, 2)
     assert("1/6" === (x - y).toString)
   }
 
-
   test("subtracting a rational number by an integer should work") {
     val x = new Rational(8, 3)
     assert("2/3" === (x - 2).toString)
+  }
+
+  test("the rational division should work") {
+    val x = new Rational(2, 3)
+    val y = new Rational(1, 2)
+    assert("4/3" === (x / y).toString)
   }
 }
 
@@ -103,6 +107,9 @@ class Rational(n: Int, d: Int) {
     this.numer + this.denom * that, this.denom)
   def -(that: Rational) = new Rational(
     this.numer * that.denom - that.numer * this.denom, this.denom * that.denom
+  )
+  def -(that: Int) = new Rational(
+    this.numer - that * this.denom, this.denom
   )
   def *(that: Rational): Rational = new Rational(this.numer * that.numer, this.denom * that.denom)
   def *(that: Int): Rational = new Rational(this.numer * that, this.denom)
