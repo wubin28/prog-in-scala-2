@@ -84,6 +84,7 @@ class FunctionalClassRational extends FunSuite{
 }
 
 class Rational(n: Int, d: Int) {
+
   require(d != 0)
   private val g = gcd(n.abs, d.abs)
   val numer = n / g
@@ -94,6 +95,9 @@ class Rational(n: Int, d: Int) {
     this.numer * that.denom + this.denom * that.numer, this.denom * that.denom)
   def +(that: Int): Rational = new Rational(
     this.numer + this.denom * that, this.denom)
+  def -(that: Rational) = new Rational(
+    this.numer * that.denom - that.numer * this.denom, this.denom * that.denom
+  )
   def *(that: Rational): Rational = new Rational(this.numer * that.numer, this.denom * that.denom)
   def *(that: Int): Rational = new Rational(this.numer * that, this.denom)
   def <(that: Rational) = this.numer * that.denom < that.numer * this.denom
