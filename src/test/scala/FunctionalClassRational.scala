@@ -85,6 +85,8 @@ class Rational(n: Int, d: Int) {
   override def toString = numer + "/" + denom
   def +(that: Rational): Rational = new Rational(
     this.numer * that.denom + this.denom * that.numer, this.denom * that.denom)
+  def +(that: Int): Rational = new Rational(
+    this.numer + this.denom * that, this.denom)
   def *(that: Rational): Rational = new Rational(this.numer * that.numer, this.denom * that.denom)
   def *(that: Int): Rational = new Rational(this.numer * that, this.denom)
   def <(that: Rational) = this.numer * that.denom < that.numer * this.denom
