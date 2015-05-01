@@ -5,50 +5,48 @@ import org.scalatest.FunSuite
  */
 class FunctionalClassRational extends FunSuite{
   test("the toString method is overridden correctly") {
-    val oneThird = new Rational(1, 3)
+    val x = new Rational(1, 3)
 
-    assert("1/3" === oneThird.toString)
+    assert("1/3" === x.toString)
   }
 
   test("the denominator should not be zero") {
     intercept[IllegalArgumentException] {
-      val oneZero = new Rational(1, 0)
+      val x = new Rational(1, 0)
     }
   }
 
   test("the rational addition should work") {
-    val oneHalf = new Rational(1, 2)
-    val twoThirds = new Rational(2, 3)
+    val x = new Rational(1, 2)
+    val y = new Rational(2, 3)
 
-    val sum = oneHalf + twoThirds
-
-    assert("7/6" === sum.toString)
+    assert("7/6" === (x + y).toString)
   }
 
   test("the rational less than should work") {
-    val oneHalf = new Rational(1, 2)
-    val twoThirds = new Rational(2, 3)
+    val x = new Rational(1, 2)
+    val y = new Rational(2, 3)
 
-    assert(oneHalf lessThan twoThirds)
+    assert(x < y)
   }
 
   test("the rational max should work") {
-    val twoThirds = new Rational(2, 3)
-    val oneHalf = new Rational(1, 2)
+    val x = new Rational(2, 3)
+    val y = new Rational(1, 2)
 
-    assert(twoThirds === (oneHalf max twoThirds))
+    assert(x === (y max x))
   }
 
   test("the auxiliary constructor should work") {
-    val three = new Rational(3)
+    val x = new Rational(3)
 
-    assert("3/1" === three.toString)
+    assert("3/1" === x.toString)
   }
 
   test("the primary constructor should normalize the rational") {
-    val rat = new Rational(66, 42)
+    val x = new Rational(66, 42)
 
-    assert("11/7" === rat.toString)
+    assert("11/7" === x.toString)
   }
 
   test("the rational multiplication should work") {
@@ -63,6 +61,8 @@ class FunctionalClassRational extends FunSuite{
     val y = new Rational(2, 3)
 
     assert("5/6" === (x + x * y).toString)
+    assert("2/3" === ((x + x) * y).toString)
+    assert("5/6" === (x + (x * y)).toString)
   }
 }
 
@@ -76,7 +76,7 @@ class Rational(n: Int, d: Int) {
   def +(that: Rational): Rational = new Rational(this.numer * that.denom + this.denom * that.numer
     , this.denom * that.denom)
   def *(that: Rational): Rational = new Rational(this.numer * that.numer, this.denom * that.denom)
-  def lessThan(that: Rational) = this.numer * that.denom < that.numer * this.denom
-  def max(that: Rational) = if (this lessThan that) that else this
+  def <(that: Rational) = this.numer * that.denom < that.numer * this.denom
+  def max(that: Rational) = if (this < that) that else this
   private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
 }
