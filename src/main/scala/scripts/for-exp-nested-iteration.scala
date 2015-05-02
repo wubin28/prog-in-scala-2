@@ -50,8 +50,11 @@ def grep(pattern: String) =
       file <- filesHere
       if file.getName.endsWith(".scala")
       line <- fileLines(file)
-      if line.trim.matches(pattern)
-    } println(file +": "+ line.trim)
+      // Mid-stream variable bindings
+      trimmed = line.trim
+      //      if line.trim.matches(pattern)
+      if trimmed.matches(pattern)
+    //    } println(file +": "+ line.trim)
+    } println(file +": "+ trimmed)
 //    ) println(file +": "+ line.trim)
 grep(".*endsWith.*")
-
