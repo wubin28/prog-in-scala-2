@@ -40,11 +40,18 @@ println("\n>>>for if file name ends with .scala and line contains endsWith:")
 def fileLines(file: java.io.File) =
   scala.io.Source.fromFile(file).getLines().toList
 def grep(pattern: String) =
-  for (
-    file <- filesHere
-    if file.getName.endsWith(".scala");
-    line <- fileLines(file)
-    if line.trim.matches(pattern)
-  ) println(file +": "+ line.trim)
+// If you prefer, you can use curly braces instead of parentheses to surround the
+// generators and filters. One advantage to using curly braces is that you can leave
+// off some of the semicolons that are needed when you use parentheses, because as
+// explained in Section 4.2, the Scala compiler will not infer semi- colons while
+// inside parentheses.
+//  for (
+    for {
+      file <- filesHere
+      if file.getName.endsWith(".scala")
+      line <- fileLines(file)
+      if line.trim.matches(pattern)
+    } println(file +": "+ line.trim)
+//    ) println(file +": "+ line.trim)
 grep(".*endsWith.*")
 
