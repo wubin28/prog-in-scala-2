@@ -98,6 +98,9 @@ class FunctionalClassRational extends FunSuite{
   }
 
   test("swapping the operands should work") {
+    // Note that for an implicit conversion to work, it needs to be in scope. If you
+    // place the implicit method definition inside class Rational, it won’t be in scope
+    // in the interpreter.
     implicit def intToRational(x: Int) = new Rational(x)
     val x = new Rational(2, 3)
     assert("8/3" === (x + 2).toString)
