@@ -58,3 +58,23 @@ def grep(pattern: String) =
     } println(file +": "+ trimmed)
 //    ) println(file +": "+ line.trim)
 grep(".*endsWith.*")
+
+// Producing a new collection
+println("\n>>>for and yield file ending with .scala")
+def scalaFiles =
+  for {
+    file <- filesHere
+    if file.getName.endsWith(".scala")
+  } yield file
+for (file <- scalaFiles) println(file)
+
+println("\n>>>for and yield trimmed lengths")
+val forLineLengths =
+  for {
+    file <- filesHere
+    if file.getName.endsWith(".scala")
+    line <- fileLines(file)
+    trimmed = line.trim
+    if trimmed.matches(".*endsWith.*")
+  } yield trimmed.length
+for (length <- forLineLengths) println(length)
