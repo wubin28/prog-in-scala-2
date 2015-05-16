@@ -108,30 +108,31 @@ class FunctionalClassRational extends FunSuite{
     assert("4/3" === (2 - x).toString)
     assert("3/1" === (2 / x).toString)
   }
+
+  class Rational(n: Int, d: Int) {
+    require(d != 0)
+    private val g = gcd(n.abs, d.abs)
+    val numer = n / g
+    val denom = d / g
+    def this(n: Int) = this(n, 1)
+    override def toString = numer + "/" + denom
+    def +(that: Rational): Rational = new Rational(
+      this.numer * that.denom + this.denom * that.numer, this.denom * that.denom)
+    def +(that: Int): Rational = new Rational(
+      this.numer + this.denom * that, this.denom)
+    def -(that: Rational) = new Rational(
+      this.numer * that.denom - that.numer * this.denom, this.denom * that.denom
+    )
+    def -(that: Int) = new Rational(
+      this.numer - that * this.denom, this.denom
+    )
+    def *(that: Rational): Rational = new Rational(this.numer * that.numer, this.denom * that.denom)
+    def *(that: Int): Rational = new Rational(this.numer * that, this.denom)
+    def /(that: Rational) = new Rational(this.numer * that.denom, this.denom * that.numer)
+    def /(that: Int) = new Rational(this.numer, this.denom * that)
+    def <(that: Rational) = this.numer * that.denom < that.numer * this.denom
+    def max(that: Rational) = if (this < that) that else this
+    private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+  }
 }
 
-class Rational(n: Int, d: Int) {
-  require(d != 0)
-  private val g = gcd(n.abs, d.abs)
-  val numer = n / g
-  val denom = d / g
-  def this(n: Int) = this(n, 1)
-  override def toString = numer + "/" + denom
-  def +(that: Rational): Rational = new Rational(
-    this.numer * that.denom + this.denom * that.numer, this.denom * that.denom)
-  def +(that: Int): Rational = new Rational(
-    this.numer + this.denom * that, this.denom)
-  def -(that: Rational) = new Rational(
-    this.numer * that.denom - that.numer * this.denom, this.denom * that.denom
-  )
-  def -(that: Int) = new Rational(
-    this.numer - that * this.denom, this.denom
-  )
-  def *(that: Rational): Rational = new Rational(this.numer * that.numer, this.denom * that.denom)
-  def *(that: Int): Rational = new Rational(this.numer * that, this.denom)
-  def /(that: Rational) = new Rational(this.numer * that.denom, this.denom * that.numer)
-  def /(that: Int) = new Rational(this.numer, this.denom * that)
-  def <(that: Rational) = this.numer * that.denom < that.numer * this.denom
-  def max(that: Rational) = if (this < that) that else this
-  private def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
-}
